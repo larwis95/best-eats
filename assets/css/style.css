@@ -1,0 +1,12 @@
+.input {
+    width: 33%;
+}
+
+body {
+   background-color: var(--grey); 
+}
+
+#initialBody {
+    background-image: url('../images/bg-intial-search.jpg');
+    border: 1 px solid var(--orange);
+}
