@@ -1,3 +1,9 @@
+:root {
+    --orange: #D16014;
+    --white: #ffffff;
+    --dark: #131516;
+    --grey: #3C3941;
+  }
 .input {
     width: 33%;
 }
@@ -10,3 +16,20 @@ body {
     background-image: url('../images/bg-intial-search.jpg');
     border: 1 px solid var(--orange);
 }
+.sidenav {
+    height: 100%; 
+    width: 185px; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    right: 0;
+    background-color: var(--dark); 
+    overflow-x: hidden; 
+    padding-top: 20px;
+  }
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+        width: 155px;}
+  }
+
