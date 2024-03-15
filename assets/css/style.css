@@ -4,17 +4,19 @@
     --dark: #131516;
     --grey: #3C3941;
   }
-.input {
-    width: 33%;
-}
 
 body {
-   background-color: var(--grey); 
+   background-color: var(--grey);
+   font-family: 'Poppins', sans-serif;
+   height: 100vh;
 }
 
 #initialBody {
     background-image: url('../images/bg-intial-search.jpg');
-    border: 1 px solid var(--orange);
+    background-repeat: no-repeat;
+    border: 1px solid var(--orange);
+    width: 910px;
+    height: 607px;
 }
 .sidenav {
     height: 100%; 
@@ -27,6 +29,38 @@ body {
     overflow-x: hidden; 
     padding-top: 20px;
   }
+
+.label {
+    color: var(--white);
+    -webkit-text-stroke: 1px black;
+}
+
+.is-size-2 {
+    color: var(--orange);
+    font-weight: bold;
+    -webkit-text-stroke: 1px black;
+}
+
+.button {
+    background: var(--orange);
+    border: 1px solid var(--dark);
+    color: var(--white);
+    -webkit-text-stroke: 1px black;
+    width: 10%;
+    font-weight: bold;
+}
+
+.input {
+    width: 33%;
+    background-color: var(--grey);
+    color: var(--white);
+    border: 1px solid var(--orange);
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, .5);
+}
+
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
