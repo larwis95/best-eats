@@ -4,8 +4,19 @@
     --dark: #131516;
     --grey: #3C3941;
   }
+.input {
+    width: 33%;
+}
 
-  .sidenav {
+body {
+   background-color: var(--grey); 
+}
+
+#initialBody {
+    background-image: url('../images/bg-intial-search.jpg');
+    border: 1 px solid var(--orange);
+}
+.sidenav {
     height: 100%; 
     width: 185px; 
     position: fixed; 
@@ -16,9 +27,9 @@
     overflow-x: hidden; 
     padding-top: 20px;
   }
-
-  @media screen and (max-height: 450px) {
+@media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
         width: 155px;}
   }
+
