@@ -16,15 +16,22 @@
 <body>
 
     <div class="container">
-        <div class="container is-justify-content-center is-flex p-5" id="initialBody">
-            <div class="field m-6">
-                <label class="label" size="5">Search a City</label>
-                <div class="control">
-                    <input class="input" type="text" placeholder="San Jose, CA">
+        <div class="container is-align-items-center is-flex columns" id="initialBody">
+                <div class="container column ml-6 is-one-third">
+                    <h2 class="is-size-2">New to town? Search to satisfy your craving.</h2>
+                </div>
+                <div class="field is-justify-content-center column">
+                    <div class="control columns">
+                        <div class="column is-align-items-center">
+                        <label class="label" size="5" for="searchBar">Search a City</label>
+                        <input class="input has-text-centered" type="text" placeholder="San Jose, CA" id="searchBar">
+                        <button class="button has-text-centered">Go</button>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
 
 
     <div class="sidenav">  
@@ -36,6 +43,5 @@
     defer
   ></script>
 </body>
-<html>
 
 </html>
