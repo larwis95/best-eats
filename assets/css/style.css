@@ -12,7 +12,7 @@
     z-index: 1; 
     top: 0; 
     right: 0;
-    background-color: var(--grey); 
+    background-color: var(--dark); 
     overflow-x: hidden; 
     padding-top: 20px;
   }
