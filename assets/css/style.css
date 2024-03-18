@@ -27,9 +27,9 @@ body {
     overflow-x: hidden; 
     padding-top: 20px;
   }
-@media screen and (max-height: 450px) {
+@media screen and (max-width: 720px) {
     .sidenav {
         padding-top: 15px;
-        width: 155px;}
+        width: 140px;}
   }
 
