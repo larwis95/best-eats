@@ -93,3 +93,86 @@
 .btn + .btn {
     margin-left: .25rem;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+  
+body {
+   background-color: var(--grey);
+   font-family: 'Poppins', sans-serif;
+   min-height: 100%;
+}
+
+.footer {
+    background-color: var(--gray);
+    color: var(--white);
+    border: 1px solid var(--orange);
+}
+
+a {
+    color: var(--orange);
+}
+
+.sidenav {
+    height: 100%; 
+    width: 185px; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    right: 0;
+    background-color: var(--dark); 
+    overflow-x: hidden; 
+    padding-top: 20px;
+  }
+
+.label {
+    color: var(--white);
+    -webkit-text-stroke: 1px black;
+}
+
+.is-size-3 {
+    color: var(--orange);
+    font-weight: bold;
+    -webkit-text-stroke: 1px black;
+}
+
+.button {
+    background: var(--orange);
+    border: 1px solid var(--dark);
+    color: var(--white);
+    -webkit-text-stroke: 1px black;
+    width: 10%;
+    font-weight: bold;
+}
+
+.input {
+    width: 66%;
+    background-color: var(--grey);
+    color: var(--white);
+    border: 1px solid var(--orange);
+}
+
+#initialBody {
+    background-image: url('../images/bg-intial-search.jpg');
+    background-repeat: no-repeat;
+    max-width: 910px;
+    height: 607px;
+    border: 1px solid var(--orange);
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, .5);
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+        width: 155px;}
+  }
+
