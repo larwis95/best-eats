@@ -14,29 +14,35 @@
   <title>Find the Best Eats</title>
 </head>
 <body>
-
-    <div class="container">
-        <div class="container is-align-items-center is-flex columns" id="initialBody">
-                <div class="container column ml-6 is-one-third">
-                    <h2 class="is-size-2">New to town? Search to satisfy your craving.</h2>
+    <main class="is-flex is-justify-content-center mb-2">
+        <section class="section" id="initialBody">
+            <div class='container columns is-centered'>
+                <div class="column is-two-third">
+                    <h2 class="is-size-3">New to town? Search to satisfy your craving.</h2>
                 </div>
-                <div class="field is-justify-content-center column">
-                    <div class="control columns">
-                        <div class="column is-align-items-center">
-                        <label class="label" size="5" for="searchBar">Search a City</label>
-                        <input class="input has-text-centered" type="text" placeholder="San Jose, CA" id="searchBar">
-                        <button class="button has-text-centered">Go</button>
-                    </div>
+                <div class="column is-one-third">
+                    <div class="field columns">
+                        <div class="control">
+                            <div class="is-align-items-center">
+                                <label class="label" for="searchBar">Search a City</label>
+                                <input class="input has-text-centered" type="text" placeholder="San Jose, CA" id="searchBar">
+                                <button class="button has-text-centered">Go</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
+        <div class="sidenav">  
         </div>
-
-
-
-    <div class="sidenav">  
-      </div>
-
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            Powered by <a href='https://www.bulma.io'>Bulma.</a>&copy 2024 Peyton Brimmer, Alec Hilty, Lawrence Wisniewski.
+          </p>
+        </div>
+      </footer>
     <script src="./assets/js/script.js"></script>
     <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAICu2uRtO8MB_8-vw03aONwaK-fVV5us"
