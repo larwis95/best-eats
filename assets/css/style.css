@@ -82,7 +82,7 @@ a {
     color: rgba(255, 255, 255, .5);
 }
 
-@media screen and (max-height: 450px) {
+@media screen and (max-width: 720px) {
     .sidenav {
         padding-top: 15px;
         width: 155px;}
