@@ -4,3 +4,92 @@
     --dark: #131516;
     --grey: #3C3941;
   }
+
+.header-div {
+    background-color: #3c3941;
+    opacity: 0.9;
+    background-image: linear-gradient(45deg, #D16014 50%, #3c3941 50%);
+    background-size: 28px 28px;
+    border: 1px solid #131516; 
+    border-radius: 5px; 
+    padding: 20px; 
+    margin-bottom: 30px; 
+    box-shadow: 0 5px 4px #D16014(0,0,0.5,0.5);
+}
+
+.container-header {
+    background-color: #131516; 
+    border: 3px solid #3c3941; 
+    border-radius: 5px; 
+    padding: 30px; 
+    margin-bottom: 20px; 
+    box-shadow: 0 5px 5px #D16014(0,0,0.5,0.5);
+    text-align: right;
+}
+
+.container-header-title {
+    
+        
+        width: 200px; 
+        padding: 10px; 
+        background-color: #f0f0f0; 
+        color: #333; 
+
+
+
+}
+
+.card {
+    background: fff;
+    padding: 20rem;
+    boorder: 5px soldi #131516:var(--dark)
+}
+
+.card.card-shadow {
+    border: none;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, .5, .5);
+}
+
+.card-header {
+ font-size: 1.5rem;
+ margin-bottom: 1rem;
+}
+
+.card-body {
+    margin-bottom: 1rem;
+}
+
+.card-footer {
+ margin-top: 1rem;
+
+}
+
+.btn {
+    --color: #3c3941; (200 50%, 60%);
+    background: #3c3941;(200, 50%, 50%);
+    color: white;
+    border: none;
+    font-size: 1rem;
+    padding: .5em .75em;
+    border-radius: .25em;
+    cursor: pointer;
+
+}
+
+.btn:hover, .btn:focus {
+    background: #3c3941;(200 50%, 60%);
+}
+
+.btn.btn-outline {
+    background: none;
+    border: 2px solid solid var(--color);
+    color: var(--color);
+}
+
+.btn.btn-outline:hover, .btn.btn-outline:focus {
+ background: #3c3941;(200 50%, 60%);
+}
+
+.btn + .btn {
+    margin-left: .25rem;
+}
