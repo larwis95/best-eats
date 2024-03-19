@@ -82,6 +82,10 @@ a {
     color: rgba(255, 255, 255, .5);
 }
 
+#errorText {
+    color: red;
+}
+
 @media screen and (max-width: 720px) {
     .sidenav {
         padding-top: 15px;
