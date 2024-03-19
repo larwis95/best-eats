@@ -5,44 +5,37 @@
     --grey: #3C3941;
   }
 
-.header-div {
-    background-color: #3c3941;
-    opacity: 0.9;
-    background-image: linear-gradient(45deg, #D16014 50%, #3c3941 50%);
-    background-size: 28px 28px;
-    border: 1px solid #131516; 
-    border-radius: 5px; 
-    padding: 20px; 
-    margin-bottom: 30px; 
-    box-shadow: 0 5px 4px #D16014(0,0,0.5,0.5);
-}
-
 .container-header {
-    background-color: #131516; 
-    border: 3px solid #3c3941; 
-    border-radius: 5px; 
-    padding: 30px; 
-    margin-bottom: 20px; 
-    box-shadow: 0 5px 5px #D16014(0,0,0.5,0.5);
+    background-image: linear-gradient(45deg, #d16014 50%, #f56e06 50% );
+    background-color: #000;
+    background-size: 20px 20px;
+    border: none;
+    box-shadow: 2px 2px 2px #000000, 0em 0.1em .4em #000000;
+    padding: 7px; 
+    margin-bottom: 1px; 
     text-align: right;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    opacity: .75;
+    
 }
 
 .container-header-title {
-    
-        
         width: 200px; 
-        padding: 10px; 
-        background-color: #f0f0f0; 
-        color: #333; 
-
-
-
+        padding: 3px; 
+        background-color: #000000; 
+        color: #ffffff; 
+        text-align: center;
+        font-size: 28px;
+        opacity: 1;
 }
 
 .card {
     background: fff;
     padding: 20rem;
-    boorder: 5px soldi #131516:var(--dark)
+    border: 5px soldi #131516:var(--dark)
 }
 
 .card.card-shadow {
@@ -104,6 +97,9 @@ html {
 }
   
 body {
+    padding-top: 80px;
+    padding-left: 3px;
+    padding-right: 165px;
    background-color: var(--grey);
    font-family: 'Poppins', sans-serif;
    min-height: 100%;
@@ -118,17 +114,19 @@ body {
 a {
     color: var(--orange);
 }
-
+/* side nav needs to be made responsive and scaleable  */
 .sidenav {
     height: 100%; 
-    width: 185px; 
+    width: 160px; 
     position: fixed; 
     z-index: 1; 
     top: 0; 
+    bottom: -85px;
     right: 0;
     background-color: var(--dark); 
     overflow-x: hidden; 
-    padding-top: 20px;
+    margin-top: 80px;
+    padding-left: 10px;
   }
 
 .label {
