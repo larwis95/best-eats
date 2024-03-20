@@ -20,18 +20,18 @@
     </header>
 
     <main class="is-flex is-justify-content-center mb-2">
-        <section class="section" id="initialBody">
-            <div class='container columns is-centered'>
+        <section class="section is-flex is-align-items-center" id="initialBody">
+            <div class='container columns is-centered is-vcentered'>
                 <div class="column is-two-third">
                     <h2 class="is-size-3">New to town? Search to satisfy your craving.</h2>
                 </div>
                 <div class="column is-one-third">
                     <div class="field columns">
                         <div class="control">
-                            <div class="is-align-items-center">
+                            <div class="is-align-items-center" id="searchDiv">
                                 <label class="label" for="searchBar">Search a City</label>
                                 <input class="input has-text-centered" type="text" placeholder="San Jose, CA" id="searchBar">
-                                <button class="button has-text-centered">Go</button>
+                                <button class="button has-text-centered" id="goBtn">Go</button>
                             </div>
                         </div>
                     </div>
@@ -39,21 +39,22 @@
             </div>
         </section>
     </main>
-        <div class="sidenav">  
-            
+        <div class="sidenav"> 
+            <ul id="favorite-restaurants"></ul> 
         </div>
     <footer class="footer">
         <div class="content has-text-centered">
           <p>
-            Powered by <a href='https://www.bulma.io'>Bulma.</a>&copy 2024 Peyton Brimmer, Alec Hilty, Lawrence Wisniewski.
+            Powered by <a href='https://www.bulma.io'>Bulma.</a> &copy 2024 Peyton Brimmer, Alec Hilty, Lawrence Wisniewski.
           </p>
         </div>
       </footer>
-    <script src="./assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAICu2uRtO8MB_8-vw03aONwaK-fVV5us"
-    defer
-  ></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAICu2uRtO8MB_8-vw03aONwaK-fVV5us&libraries=places"
+    defer>
+    </script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

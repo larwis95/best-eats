@@ -105,8 +105,12 @@ body {
    min-height: 100%;
 }
 
+strong {
+    color: var(--orange);
+}
+
 .footer {
-    background-color: var(--gray);
+    background-color: var(--grey);
     color: var(--white);
     border: 1px solid var(--orange);
 }
@@ -164,11 +168,46 @@ a {
     border: 1px solid var(--orange);
 }
 
+.modal {
+    color: var(--white);
+}
+
+.modal-card-head {
+    background-color: var(--dark);
+    color: var(--white);
+}
+
+.modal-card-title {
+    color: var(--white);
+}
+
+.modal-card-body {
+    background-color: var(--grey);
+}
+
+.modal-card-foot {
+    background-color: var(--dark);
+}
+
 .input::placeholder {
     color: rgba(255, 255, 255, .5);
 }
 
-@media screen and (max-height: 450px) {
+#errorText {
+    color: red;
+}
+
+#favButton {
+    background: var(--orange);
+    border: 1px solid var(--dark);
+    color: var(--white);
+    -webkit-text-stroke: 1px black;
+    width: 40%;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width: 720px) {
     .sidenav {
         padding-top: 15px;
         width: 155px;}
