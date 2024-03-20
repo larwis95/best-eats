@@ -73,12 +73,14 @@ function getModalInfo(id) {
             console.log(place)
             let info = {
                 address: place.formatted_address,
+                id: place.place_id,
                 name: place.name,
                 phone: place.formatted_phone_number,
                 rating: place.rating,
                 reviews: place.reviews,
                 website: place.website
             };
+            console.log(info);
             createModal(info);
         }
     });
@@ -89,24 +91,25 @@ function createModal(restaurant) {
     bodyEl.append(`
     <div class="modal">
         <div class="modal-background"></div>
-        <div class="modal-card">
+        <div class="modal-card" style="border: 1px solid #D16014">
             <header class="modal-card-head">
                 <p class="modal-card-title">${restaurant.name}</p>
-                <p>Rating: ${restaurant.rating} ☆</p>
-                <button class="delete" aria-label="close"></button>
+                <p class="m-1">Rating: ${restaurant.rating} ☆</p>
+                <button class="delete m-1" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
-                <h2>Reviews</h2>
+                <h2 style="font-weight: bolder">Reviews</h2>
                 <ul id="reviewUL">
                 </ul>
             </section>
-            <footer class="modal-card-foot">
-                <button class="button is-success">Save to Favorites</button>
+            <footer class="modal-card-foot is-flex is-justify-content-center">
+                <button class="button is-success" id="favButton">Save to Favorites</button>
             </footer>
         </div>
     </div>`);
     addReviews(restaurant.reviews);
     showModal();
+    addModalHandlers(restaurant);
 }
 
 function addReviews(reviews) {
@@ -118,15 +121,15 @@ function addReviews(reviews) {
         let time = reviews[i].relative_time_description;
         let text = reviews[i].text;
         ulEl.append(`
-            <li>
+            <li class="m-1 p-1" style="border-bottom: 1px solid white">
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
-                        <p>
-                        <strong>${author}</strong> <small>${rating} ☆</small> <small>${time}</small>
-                        <br>
-                        ${text};
-                        </p>
+                            <p>
+                            <strong>${author}</strong> | <small>${rating} ☆</small> | <small>${time}</small>
+                            <br>
+                            ${text}
+                            </p>
                         </div>
                     </div>
                 </article>
@@ -139,6 +142,22 @@ function addReviews(reviews) {
 function showModal() {
     const modal = $('.modal');
     modal.addClass('is-active');
+}
+
+function addModalHandlers(restaurant) {
+    const modalBg = $('.modal-background');
+    const closeBtn = $('.delete');
+    closeBtn.on('click', () => {
+        closeModal();
+    })
+    modalBg.on('click', () => {
+        closeModal();
+    })
+}
+
+function closeModal() {
+    const modal = $('.modal');
+    modal.remove();
 }
 
 
