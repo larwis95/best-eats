@@ -31,16 +31,18 @@ a {
     color: var(--orange);
 }
 
-.sidenav {
+.sidebar {
     height: 100%; 
     width: 185px; 
-    position: fixed; 
-    z-index: 1; 
+ 
+    
     top: 0; 
     right: 0;
     background-color: var(--dark); 
     overflow-x: hidden; 
     padding-top: 20px;
+    color: var(--orange);
+    padding-left: 20px;
   }
 
 .label {
@@ -82,9 +84,6 @@ a {
     color: rgba(255, 255, 255, .5);
 }
 
-@media screen and (max-width: 720px) {
-    .sidenav {
-        padding-top: 15px;
-        width: 155px;}
-  }
+
+
 
