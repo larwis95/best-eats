@@ -118,17 +118,19 @@ strong {
 a {
     color: var(--orange);
 }
-/* side nav needs to be made responsive and scaleable  */
-.sidenav {
+
+
+.sidebar {
     height: 100%; 
-    width: 160px; 
-    position: fixed; 
-    z-index: 1; 
+    width: 160px;  
     top: 0; 
     bottom: -85px;
     right: 0;
     background-color: var(--dark); 
     overflow-x: hidden; 
+    padding-top: 20px;
+    justify-content: center;
+    color: var(--orange);
     margin-top: 80px;
     padding-left: 10px;
   }
@@ -206,10 +208,3 @@ a {
     font-weight: bold;
     font-size: 1.2rem;
 }
-
-@media screen and (max-width: 720px) {
-    .sidenav {
-        padding-top: 15px;
-        width: 155px;}
-  }
-

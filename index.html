@@ -14,13 +14,13 @@
   <title>Find the Best Eats</title>
 </head>
 <body>
+    <main class="is-flex is-justify-content-center mb-2 columns">
+        <section class="section column is-flex is-align-items-center is-four-fifth" id="initialBody">
 
     <header class="container-header">
         <p class="container-header-title"> BEST EATS</p>
     </header>
 
-    <main class="is-flex is-justify-content-center mb-2">
-        <section class="section is-flex is-align-items-center" id="initialBody">
             <div class='container columns is-centered is-vcentered'>
                 <div class="column is-two-third">
                     <h2 class="is-size-3">New to town? Search to satisfy your craving.</h2>
@@ -38,10 +38,14 @@
                 </div>
             </div>
         </section>
-    </main>
-        <div class="sidenav"> 
-            <ul id="favorite-restaurants"></ul> 
+        <div class="sidebar column is-flex is-one-fifth">
+            <div class="menu is-justify-content-center">
+                <p class="menu-label">Favorites</p>
+                <ul class="menu-list" id="sidebar-list"></ul>
+            </div>
         </div>
+    </main>
+       
     <footer class="footer">
         <div class="content has-text-centered">
           <p>
