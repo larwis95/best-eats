@@ -42,7 +42,7 @@ function findRestaurants(coords) {
 
     }
     const service = new google.maps.places.PlacesService(document.createElement('div'));
-    new Promise((resolve, error) => {
+    return new Promise((resolve, error) => {
         service.nearbySearch(query, (results) => {
         resolve(results);
         console.log(results);
@@ -159,7 +159,6 @@ function closeModal() {
     const modal = $('.modal');
     modal.remove();
 }
-
 
 //function that runs on document load, adds event listeners to our search button
 $(document).ready(() => {
