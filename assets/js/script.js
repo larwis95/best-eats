@@ -169,3 +169,21 @@ $(document).ready(() => {
         handleSearchClick(input);
     })
 });
+
+const favRestaurants = ['Test', 'Test', 'Test', 'Test'];
+
+// Function to generate list items in the sidebar
+function generateSidebarList() {
+  const $sidebarList = $('#sidebar-list');
+
+  // Loop through the items and create list items
+  favRestaurants.forEach(favRestaurants => {
+    const $li = $('<li>').addClass('menu-list-item').text(favRestaurants);
+    $sidebarList.append($li); // Append the <li> to the <ul>
+  });
+}
+
+// Call the function to generate the list items
+$(document).ready(function() {
+  generateSidebarList();
+});
