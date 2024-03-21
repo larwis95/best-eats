@@ -1,7 +1,7 @@
 const storedPlaces = JSON.parse(localStorage.getItem('places'));
 const searchDiv = $('#searchDiv');
 const search = $('#searchBar');
-const bodyEl = $('body')
+const bodyEl = $('body');
 let savedPlaces = [];
 
 function handleSearchClick(input) {
@@ -38,7 +38,7 @@ function findRestaurants(coords) {
     const query = {
         location: coords,
         types: ['restaurant'],
-        radius: '3300'
+        radius: '8046.72'
 
     }
     const service = new google.maps.places.PlacesService(document.createElement('div'));
@@ -49,18 +49,18 @@ function findRestaurants(coords) {
         sortRestarants(results);
         })
     })
-}
+};
 
 function sortRestarants(restaurants) {
     const highRated = restaurants.sort((a, b) => b.rating - a.rating).slice(0, 5);
     renderList(highRated);
-}
+};
 
 //function to render the intial restaurant list, restaurant[i].name = name of restaurant, restaurant[i].rating = rating, restaurant.place_id = place id
 function renderList(restaurants) {
     console.table(restaurants);
 
-}
+};
 
 function getModalInfo(id) {
     const request = {
@@ -117,7 +117,7 @@ function createModal(restaurant) {
     addReviews(restaurant.reviews);
     showModal();
     addModalHandlers(restaurant);
-}
+};
 
 function addReviews(reviews) {
     const ulEl = $('#reviewUL');
@@ -144,12 +144,12 @@ function addReviews(reviews) {
         `);
 
     }
-}
+};
 
 function showModal() {
     const modal = $('.modal');
     modal.addClass('is-active');
-}
+};
 
 function addModalHandlers(restaurant) {
     const modalBg = $('.modal-background');
@@ -157,10 +157,10 @@ function addModalHandlers(restaurant) {
     const favBtn = $('#favButton');
     closeBtn.on('click', () => {
         closeModal();
-    })
+    });
     modalBg.on('click', () => {
         closeModal();
-    })
+    });
     favBtn.on('click', () => {
         const favInfo = {id: restaurant.id, name: restaurant.name};
         let found = false;
@@ -185,16 +185,16 @@ function addModalHandlers(restaurant) {
             }, 1000);
         }
     });
-}
+};
 
 function setLocalStorage() {
     localStorage.setItem('places', JSON.stringify(savedPlaces));
-}
+};
 
 function closeModal() {
     const modal = $('.modal');
     modal.remove();
-}
+};
 
 //function that runs on document load, adds event listeners to our search button
 $(document).ready(() => {
@@ -206,7 +206,20 @@ $(document).ready(() => {
     goBtn.on('click', () => {
         console.log(search.val());
         const input = search.val();
-        handleSearchClick(input);
+        if (input !== '') 
+        {
+            handleSearchClick(input);
+        }
+        else
+        {
+            searchDiv.append(`
+            <p id="errorText">Type something first!`);
+            search.val('');
+            setTimeout(() => {
+                const text = $('#errorText');
+                text.remove();
+            }, 1000);
+        }
     })
 });
 
