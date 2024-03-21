@@ -98,6 +98,13 @@ function createModal(restaurant) {
                 <button class="delete m-1" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
+                <div class="m-4 p-2" style="border: 1px solid white">
+                    <ul id="modalInfo">
+                        <li class="p2">${restaurant.address}</li>
+                        <li class="p2"><a href="${restaurant.website}">Website</a></li>
+                        <li class="p2">${restaurant.phone}<li>
+                    </ul>
+                </div>
                 <h2 style="font-weight: bolder">Reviews</h2>
                 <ul id="reviewUL">
                 </ul>
@@ -147,12 +154,41 @@ function showModal() {
 function addModalHandlers(restaurant) {
     const modalBg = $('.modal-background');
     const closeBtn = $('.delete');
+    const favBtn = $('#favButton');
     closeBtn.on('click', () => {
         closeModal();
     })
     modalBg.on('click', () => {
         closeModal();
     })
+    favBtn.on('click', () => {
+        const favInfo = {id: restaurant.id, name: restaurant.name};
+        let found = false;
+        for (let i = 0; i < savedPlaces.length; i++) 
+        {
+            if (savedPlaces[i].id === restaurant.id)
+            {
+                found = true;
+            }
+        }
+        if (found === false) 
+        {
+            savedPlaces.push(favInfo);
+            setLocalStorage();
+        }
+        else 
+        {
+            $('.modal-card-foot').append('<p id="errorText">Already saved to favorites!</p>');
+              setTimeout(() => {
+                const text = $('#errorText');
+                text.remove();
+            }, 1000);
+        }
+    });
+}
+
+function setLocalStorage() {
+    localStorage.setItem('places', JSON.stringify(savedPlaces));
 }
 
 function closeModal() {
@@ -162,6 +198,10 @@ function closeModal() {
 
 //function that runs on document load, adds event listeners to our search button
 $(document).ready(() => {
+    if (storedPlaces !== null)
+    {
+        savedPlaces = storedPlaces;
+    }
     const goBtn = $('#goBtn');
     goBtn.on('click', () => {
         console.log(search.val());
