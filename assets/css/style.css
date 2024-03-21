@@ -210,5 +210,13 @@ a {
 }
 
 .menu-list-item {
-    font-size: 12px;
+    font-size: 14px;
+}
+
+.menu-delete-btn {
+    color: var(--grey);
+    background-color: var(--white);
+    padding: 3px;
+    margin-left: 15px;
+    font-weight: 500;
 }

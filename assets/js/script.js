@@ -198,7 +198,7 @@ function closeModal() {
 
 //function that runs on document load, adds event listeners to our search button
 $(document).ready(() => {
-    generateSidebarList();
+    
     if (storedPlaces !== null)
     {
         savedPlaces = storedPlaces;
@@ -222,7 +222,7 @@ $(document).ready(() => {
             }, 1000);
         }
     })
-    
+    generateSidebarList();
 });
 
 // Function to generate list items in the sidebar
@@ -230,8 +230,36 @@ function generateSidebarList() {
   const $sidebarList = $('#sidebar-list');
 
   // Loop through the items and create list items
-  storedPlaces.forEach(storedPlaces => {
-    const $li = $('<li>').addClass('menu-list-item').text(storedPlaces.name);
-    $sidebarList.append($li); // Append the <li> to the <ul>
+  savedPlaces.forEach(savedPlaces => {
+    $sidebarList.append(`<li class= 'menu-list-item' data-place='${savedPlaces.id}'>${savedPlaces.name} <button class= 'menu-delete-btn'> X </button> </li>`); // Append the <li> to the <ul>
   });
+  $sidebarList.on("click",(event)=>{
+    favoritesAddhandle(event)
+  } )
+}
+
+function favoritesAddhandle(event) {
+    event.stopPropagation();
+    const targFav = $(event.target)
+    if(targFav.get(0).nodeName === "BUTTON"){
+        deleteFav(event)
+        console.log(targFav.get(0));
+    } else if(targFav.get(0).nodeName === "LI") {
+        console.log(targFav.get(0));
+        getModalInfo(targFav.attr('data-place'))
+    }
+    
+}
+
+function deleteFav(event) {
+    const delBut = $(event.target);
+    const delLI = delBut.closest('LI');
+    const idDel = delLI.attr('data-place');
+    for(i = 0; i < storedPlaces.length; i++) {
+        if(savedPlaces[i].id === idDel) {
+            savedPlaces.splice(i, 1)
+            delLI.remove()
+            setLocalStorage()
+        }
+    }
 }
