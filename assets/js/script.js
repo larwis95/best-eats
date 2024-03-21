@@ -1,7 +1,7 @@
 const storedPlaces = JSON.parse(localStorage.getItem('places'));
 const searchDiv = $('#searchDiv');
 const search = $('#searchBar');
-const bodyEl = $('body')
+const bodyEl = $('body');
 let savedPlaces = [];
 
 function handleSearchClick(input) {
@@ -38,7 +38,7 @@ function findRestaurants(coords) {
     const query = {
         location: coords,
         types: ['restaurant'],
-        radius: '3300'
+        radius: '8046.72'
 
     }
     const service = new google.maps.places.PlacesService(document.createElement('div'));
@@ -49,12 +49,12 @@ function findRestaurants(coords) {
         sortRestarants(results);
         })
     })
-}
+};
 
 function sortRestarants(restaurants) {
     const highRated = restaurants.sort((a, b) => b.rating - a.rating).slice(0, 5);
     renderList(highRated);
-}
+};
 
 //function to render the intial restaurant list, restaurant[i].name = name of restaurant, restaurant[i].rating = rating, restaurant.place_id = place id
 function renderList(restaurants) {
@@ -116,6 +116,13 @@ function createModal(restaurant) {
                 <button class="delete m-1" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
+                <div class="m-4 p-2" style="border: 1px solid white">
+                    <ul id="modalInfo">
+                        <li class="p2">${restaurant.address}</li>
+                        <li class="p2"><a href="${restaurant.website}">Website</a></li>
+                        <li class="p2">${restaurant.phone}<li>
+                    </ul>
+                </div>
                 <h2 style="font-weight: bolder">Reviews</h2>
                 <ul id="reviewUL">
                 </ul>
@@ -128,7 +135,7 @@ function createModal(restaurant) {
     addReviews(restaurant.reviews);
     showModal();
     addModalHandlers(restaurant);
-}
+};
 
 function addReviews(reviews) {
     const ulEl = $('#reviewUL');
@@ -155,36 +162,94 @@ function addReviews(reviews) {
         `);
 
     }
-}
+};
 
 function showModal() {
     const modal = $('.modal');
     modal.addClass('is-active');
-}
+};
 
 function addModalHandlers(restaurant) {
     const modalBg = $('.modal-background');
     const closeBtn = $('.delete');
+    const favBtn = $('#favButton');
     closeBtn.on('click', () => {
         closeModal();
-    })
+    });
     modalBg.on('click', () => {
         closeModal();
-    })
-}
+    });
+    favBtn.on('click', () => {
+        const favInfo = {id: restaurant.id, name: restaurant.name};
+        let found = false;
+        for (let i = 0; i < savedPlaces.length; i++) 
+        {
+            if (savedPlaces[i].id === restaurant.id)
+            {
+                found = true;
+            }
+        }
+        if (found === false) 
+        {
+            savedPlaces.push(favInfo);
+            setLocalStorage();
+        }
+        else 
+        {
+            $('.modal-card-foot').append('<p id="errorText">Already saved to favorites!</p>');
+              setTimeout(() => {
+                const text = $('#errorText');
+                text.remove();
+            }, 1000);
+        }
+    });
+};
+
+function setLocalStorage() {
+    localStorage.setItem('places', JSON.stringify(savedPlaces));
+};
 
 function closeModal() {
     const modal = $('.modal');
     modal.remove();
-}
+};
 
 //function that runs on document load, adds event listeners to our search button
 $(document).ready(() => {
-    const goBtn = $('.goBtn');
-    console.log(goBtn)
+    generateSidebarList();
+    if (storedPlaces !== null)
+    {
+        savedPlaces = storedPlaces;
+    }
+    const goBtn = $('#goBtn');
     goBtn.on('click', () => {
         console.log(search.val());
         const input = search.val();
-        handleSearchClick(input);
+        if (input !== '') 
+        {
+            handleSearchClick(input);
+        }
+        else
+        {
+            searchDiv.append(`
+            <p id="errorText">Type something first!`);
+            search.val('');
+            setTimeout(() => {
+                const text = $('#errorText');
+                text.remove();
+            }, 1000);
+        }
     })
+    
 });
+
+// Function to generate list items in the sidebar
+function generateSidebarList() {
+  const $sidebarList = $('#sidebar-list');
+
+  // Loop through the items and create list items
+  storedPlaces.forEach(storedPlaces => {
+    const $li = $('<li>').addClass('menu-list-item').text(storedPlaces.name);
+    $sidebarList.append($li); // Append the <li> to the <ul>
+  });
+}

@@ -16,7 +16,7 @@
     text-align: right;
     top: 0;
     width: 100%;
-    z-index: 100;
+    /* z-index: 100; */
     opacity: .75;
     display: flex;
     flex-direction: row;
@@ -44,7 +44,7 @@
 .card {
     background: fff;
     padding: 20rem;
-    border: 5px soldi #131516:var(--dark)
+    border: 5px soldi #131516: var(--dark)
 }
 
 .card.card-shadow {
@@ -106,9 +106,9 @@ html {
 }
   
 body {
-    padding-top: 80px;
+    /* padding-top: 80px;
     padding-left: 3px;
-    padding-right: 165px;
+    padding-right: 3px; */
    background-color: var(--grey);
    font-family: 'Poppins', sans-serif;
    min-height: 100%;
@@ -127,19 +127,21 @@ strong {
 a {
     color: var(--orange);
 }
-/* side nav needs to be made responsive and scaleable  */
-.sidenav {
-    height: 100%; 
-    width: 160px; 
-    position: fixed; 
-    z-index: 1; 
+
+
+.sidebar {
+    height: 100%;   
     top: 0; 
     bottom: -85px;
     right: 0;
     background-color: var(--dark); 
     overflow-x: hidden; 
+    padding-top: 20px;
+    justify-content: center;
+    color: var(--orange);
     margin-top: 80px;
     padding-left: 10px;
+    font-size: 8px;
   }
 
 .label {
@@ -216,9 +218,6 @@ a {
     font-size: 1.2rem;
 }
 
-@media screen and (max-width: 720px) {
-    .sidenav {
-        padding-top: 15px;
-        width: 155px;}
-  }
-
+.menu-list-item {
+    font-size: 12px;
+}
