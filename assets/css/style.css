@@ -14,12 +14,14 @@
     padding: 7px; 
     margin-bottom: 1px; 
     text-align: right;
-    /* position: fixed; */
     top: 0;
     width: 100%;
     /* z-index: 100; */
     opacity: .75;
-    
+    display: flex;
+    flex-direction: row;
+    position:fixed;
+    gap: 3em;
 }
 
 .container-header-title {
@@ -30,7 +32,14 @@
         text-align: center;
         font-size: 28px;
         opacity: 1;
+        
 }
+
+.search-bar-header  {
+    align-items: right;
+    max-width: 370px;
+    
+}   
 
 .card {
     background: fff;

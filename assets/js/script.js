@@ -58,9 +58,27 @@ function sortRestarants(restaurants) {
 
 //function to render the intial restaurant list, restaurant[i].name = name of restaurant, restaurant[i].rating = rating, restaurant.place_id = place id
 function renderList(restaurants) {
+    const initialBody = $('#initialBody');
+        console.log('render list');
+    const navDiv = $('#navSearch');
+    initialBody.empty();
+    navDiv.empty()
+    const navSearch = navDiv.append(`
+    <input class="input has-text-centered" type="text" placeholder="San Jose, CA" id="searchBar">
+   `);
+   const navBtn = navDiv.append(`<button class="button has-text-centered goBtn">Go</button>`)
+   addNavHandler(navSearch, navBtn);
+   
     console.table(restaurants);
 
-};
+}
+
+function addNavHandler(searchBar, btn){
+    $(btn).on("click", ()=>{
+        const input = $(searchBar).val()
+        handleSearchClick(input)
+    })
+}
 
 function getModalInfo(id) {
     const request = {
