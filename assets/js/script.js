@@ -198,6 +198,7 @@ function closeModal() {
 
 //function that runs on document load, adds event listeners to our search button
 $(document).ready(() => {
+    generateSidebarList();
     if (storedPlaces !== null)
     {
         savedPlaces = storedPlaces;
@@ -221,22 +222,16 @@ $(document).ready(() => {
             }, 1000);
         }
     })
+    
 });
-
-const favRestaurants = ['Test', 'Test', 'Test', 'Test'];
 
 // Function to generate list items in the sidebar
 function generateSidebarList() {
   const $sidebarList = $('#sidebar-list');
 
   // Loop through the items and create list items
-  favRestaurants.forEach(favRestaurants => {
-    const $li = $('<li>').addClass('menu-list-item').text(favRestaurants);
+  storedPlaces.forEach(storedPlaces => {
+    const $li = $('<li>').addClass('menu-list-item').text(storedPlaces.name);
     $sidebarList.append($li); // Append the <li> to the <ul>
   });
 }
-
-// Call the function to generate the list items
-$(document).ready(function() {
-  generateSidebarList();
-});
