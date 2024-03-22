@@ -13,16 +13,21 @@ function handleSearchClick(input) {
     }, (results, status) => {
         if (status === google.maps.GeocoderStatus.OK && results.length > 0)
         {
-            console.log(results)
             const loc = results[0].geometry.location
             const coords = {lat: loc.lat(), lng: loc.lng()};
-            console.log(results)
             findRestaurants(coords);
             search.val('');
         }
         else 
         {
-            searchDiv.append(`
+            searchDiv?.append(`
+            <p id="errorText">${input} is not a valid search!`);
+            search.val('');
+            setTimeout(() => {
+                const text = $('#errorText');
+                text.remove();
+            }, 1000);
+            $('#navSearch')?.append(`
             <p id="errorText">${input} is not a valid search!`);
             search.val('');
             setTimeout(() => {
@@ -34,7 +39,6 @@ function handleSearchClick(input) {
 };
 
 function findRestaurants(coords) {
-    console.log(coords)
     const query = {
         location: coords,
         types: ['restaurant'],
@@ -45,7 +49,6 @@ function findRestaurants(coords) {
     return new Promise((resolve, error) => {
         service.nearbySearch(query, (results) => {
         resolve(results);
-        console.log(results);
         sortRestarants(results);
         })
     })
@@ -58,25 +61,24 @@ function sortRestarants(restaurants) {
 
 //function to render the intial restaurant list, restaurant[i].name = name of restaurant, restaurant[i].rating = rating, restaurant.place_id = place id
 function renderList(restaurants) {
-    console.log(restaurants)
     const initialBody = $('#initialBody');
     const navDiv = $('#navSearch');
     initialBody.empty();
+    initialBody.attr('style', 'background-image: none; width: auto; height: auto;')
     navDiv.empty()
-    const navSearch = navDiv.append(`
+    navDiv.append(`
     <input class="input has-text-centered" type="text" placeholder="San Jose, CA" id="searchBar">
    `);
-   const navBtn = navDiv.append(`<button class="button has-text-centered goBtn">Go</button>`)
-   addNavHandler(navSearch, navBtn);
+   const navBtn = navDiv.append(`<button class="button has-text-centered goBtn">Go</button>`);
+   addNavHandler(navBtn);
    renderCards(restaurants, initialBody);
 }
 
 function renderCards(restaurants, container) {
     container.append(`<ul class= "card-list"></ul>`)
-    console.log(restaurants)
-    const cardUl = $(".card-list")
-    console.log(cardUl)
-    for(let i = 0; i < restaurants.length; i++){
+    const cardUl = $(".card-list");
+    for(let i = 0; i < restaurants.length; i++)
+    {
         const photo = restaurants[i].photos[0].getUrl()
         cardUl.append(`<li data-id = "${restaurants[i].place_id}">
         <div class="card">
@@ -93,29 +95,31 @@ function renderCards(restaurants, container) {
                 <button class= "card-button">Reviews</button>
             </footer>
         </div>
-        </li>`)
+        </li>`);
     }
-    addCardHandler(cardUl)
+    addCardHandler(cardUl);
 }
 
-function addCardHandler(list){
+function addCardHandler(list) {
     list.on("click", (event) => {
-        event.stopPropagation()
-        const tar = $(event.target)
-        console.log(tar)
-        if(tar.get(0).nodeName === "BUTTON"){
-            const id = tar.closest("LI").attr("data-id")
-            console.log(id)
-            console.log($(tar.closest("LI")))
-            getModalInfo(id)
+        event.stopPropagation();
+        const tar = $(event.target);
+        if (tar.get(0).nodeName === "BUTTON")
+        {
+            const id = tar.closest("LI").attr("data-id");
+            getModalInfo(id);
         }
     })
 }
 
-function addNavHandler(searchBar, btn){
-    $(btn).on("click", ()=>{
-        const input = $(searchBar).val()
-        handleSearchClick(input)
+function addNavHandler(btn){
+    $(btn).on("click", (event) => {
+        if ($(event.target).get(0).nodeName === "BUTTON") 
+        {
+            const input = $('#searchBar').val();
+            handleSearchClick(input);
+            $('#searchBar').val('');
+        }
     })
 }
 
@@ -123,11 +127,11 @@ function getModalInfo(id) {
     const request = {
         placeId: id
     };
-    const service = new google.maps.places.PlacesService(document.createElement('div'));
+    const div = document.createElement('div')
+    const service = new google.maps.places.PlacesService(div);
     const restaurant = service.getDetails(request, (place, status) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) 
         {
-            console.log(place)
             let info = {
                 address: place.formatted_address,
                 id: place.place_id,
@@ -137,11 +141,9 @@ function getModalInfo(id) {
                 reviews: place.reviews,
                 website: place.website
             };
-            console.log(info);
             createModal(info);
         }
     });
-    console.log(restaurant);
 };
 
 function createModal(restaurant) {
@@ -171,12 +173,12 @@ function createModal(restaurant) {
             </footer>
         </div>
     </div>`);
-    addReviews(restaurant.reviews);
     showModal();
-    addModalHandlers(restaurant);
+    addReviews(restaurant);
 };
 
-function addReviews(reviews) {
+function addReviews(rest) {
+    const reviews = rest.reviews;
     const ulEl = $('#reviewUL');
     for (let i = 0; i < reviews.length; i++)
     {
@@ -201,6 +203,7 @@ function addReviews(reviews) {
         `);
 
     }
+    addModalHandlers(rest);
 };
 
 function showModal() {
@@ -209,13 +212,9 @@ function showModal() {
 };
 
 function addModalHandlers(restaurant) {
-    const modalBg = $('.modal-background');
     const closeBtn = $('.delete');
     const favBtn = $('#favButton');
     closeBtn.on('click', () => {
-        closeModal();
-    });
-    modalBg.on('click', () => {
         closeModal();
     });
     favBtn.on('click', () => {
@@ -232,6 +231,7 @@ function addModalHandlers(restaurant) {
         {
             savedPlaces.push(favInfo);
             setLocalStorage();
+            generateSidebarList();
         }
         else 
         {
@@ -243,6 +243,52 @@ function addModalHandlers(restaurant) {
         }
     });
 };
+
+// Function to generate list items in the sidebar
+function generateSidebarList() {
+    const $sidebarList = $('#sidebar-list');
+      $sidebarList.empty();
+    // Loop through the items and create list items
+    savedPlaces.forEach(savedPlaces => {
+      $sidebarList.append(`<li class= 'menu-list-item' data-place='${savedPlaces.id}'><button class= 'menu-delete-btn'> X </button>${savedPlaces.name}</li>`); // Append the <li> to the <ul>
+    });
+    const li = $('.menu-list-item')
+    console.log(li);
+    li.on("click",(event) => {
+      favoritesAddhandle(event)
+    })
+  }
+  
+function favoritesAddhandle(event) {
+    event.stopPropagation();
+    const targFav = $(event.target)
+    if (targFav.get(0).nodeName === "BUTTON")
+    {
+        deleteFav(event)
+        console.log(targFav.get(0));
+    } 
+    else if (targFav.get(0).nodeName === "LI") 
+    {
+        console.log(targFav.get(0));
+        getModalInfo(targFav.attr('data-place'));
+    }
+      
+  }
+  
+function deleteFav(event) {
+    const delBut = $(event.target);
+    const delLI = delBut.closest('LI');
+    const idDel = delLI.attr('data-place');
+    for(i = 0; i < storedPlaces.length; i++) 
+    {
+        if(savedPlaces[i].id === idDel) 
+        {
+            savedPlaces.splice(i, 1);
+            delLI.remove();
+            setLocalStorage();
+        }
+    }
+  }
 
 function setLocalStorage() {
     localStorage.setItem('places', JSON.stringify(savedPlaces));
@@ -262,7 +308,6 @@ $(document).ready(() => {
     }
     const goBtn = $('.goBtn');
     goBtn.on('click', () => {
-        console.log(search.val());
         const input = search.val();
         if (input !== '') 
         {
@@ -281,42 +326,3 @@ $(document).ready(() => {
     })
     generateSidebarList();
 });
-
-// Function to generate list items in the sidebar
-function generateSidebarList() {
-  const $sidebarList = $('#sidebar-list');
-
-  // Loop through the items and create list items
-  savedPlaces.forEach(savedPlaces => {
-    $sidebarList.append(`<li class= 'menu-list-item' data-place='${savedPlaces.id}'><button class= 'menu-delete-btn'> X </button>${savedPlaces.name}</li>`); // Append the <li> to the <ul>
-  });
-  $sidebarList.on("click",(event)=>{
-    favoritesAddhandle(event)
-  } )
-}
-
-function favoritesAddhandle(event) {
-    event.stopPropagation();
-    const targFav = $(event.target)
-    if(targFav.get(0).nodeName === "BUTTON"){
-        deleteFav(event)
-        console.log(targFav.get(0));
-    } else if(targFav.get(0).nodeName === "LI") {
-        console.log(targFav.get(0));
-        getModalInfo(targFav.attr('data-place'))
-    }
-    
-}
-
-function deleteFav(event) {
-    const delBut = $(event.target);
-    const delLI = delBut.closest('LI');
-    const idDel = delLI.attr('data-place');
-    for(i = 0; i < storedPlaces.length; i++) {
-        if(savedPlaces[i].id === idDel) {
-            savedPlaces.splice(i, 1)
-            delLI.remove()
-            setLocalStorage()
-        }
-    }
-}

@@ -41,7 +41,7 @@
 
 .card {
     background: fff;
-    border: 5px soldi #131516: var(--dark)
+    border: 5px solid #131516 var(--dark)
 }
 
 .card.card-shadow {
@@ -49,58 +49,9 @@
     box-shadow: 0 2px 5px 0 rgba(0, 0, .5, .5);
 }
 
-.card-header {
- font-size: 1.5rem;
- margin-bottom: 1rem;
-}
-
-.card-body {
-    margin-bottom: 1rem;
-}
-
-.card-footer {
- margin-top: 1rem;
-
-}
-
 .card-img {
     max-width: 200px;
     max-height: 200px;
-}
-
-.btn {
-    --color: #3c3941; (200 50%, 60%);
-    background: #3c3941;(200, 50%, 50%);
-    color: white;
-    border: none;
-    font-size: 1rem;
-    padding: .5em .75em;
-    border-radius: .25em;
-    cursor: pointer;
-
-}
-
-.btn:hover, .btn:focus {
-    background: #3c3941;(200 50%, 60%);
-}
-
-.btn.btn-outline {
-    background: none;
-    border: 2px solid solid var(--color);
-    color: var(--color);
-}
-
-.btn.btn-outline:hover, .btn.btn-outline:focus {
- background: #3c3941;(200 50%, 60%);
-}
-
-.btn + .btn {
-    margin-left: .25rem;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 html {
