@@ -224,10 +224,26 @@ a {
     font-size: 14px;
 }
 
+.menu-list-item:hover {
+    background-color: var(--orange);
+    color: var(--dark);
+}
+
 .menu-delete-btn {
     color: var(--grey);
     background-color: var(--white);
     padding: 3px;
-    margin-left: 15px;
-    font-weight: 500;
+    margin-right: 45px;
+    font-weight: 700;
+    justify-content: center;
+}
+.menu-delete-btn:hover {
+    color: var(--orange);
+    background-color: var(--dark);
+    border: 1px solid var(--grey);
+}
+
+.menu-label {
+    font-size: 18px;
+    margin-left: 33px;
 }

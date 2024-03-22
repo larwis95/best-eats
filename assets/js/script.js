@@ -288,7 +288,7 @@ function generateSidebarList() {
 
   // Loop through the items and create list items
   savedPlaces.forEach(savedPlaces => {
-    $sidebarList.append(`<li class= 'menu-list-item' data-place='${savedPlaces.id}'>${savedPlaces.name} <button class= 'menu-delete-btn'> X </button> </li>`); // Append the <li> to the <ul>
+    $sidebarList.append(`<li class= 'menu-list-item' data-place='${savedPlaces.id}'><button class= 'menu-delete-btn'> X </button>${savedPlaces.name}</li>`); // Append the <li> to the <ul>
   });
   $sidebarList.on("click",(event)=>{
     favoritesAddhandle(event)
