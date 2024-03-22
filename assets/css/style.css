@@ -12,15 +12,13 @@
     border: none;
     box-shadow: 2px 2px 2px #000000, 0em 0.1em .4em #000000;
     padding: 7px; 
-    margin-bottom: 1px; 
+    margin-bottom: 20px; 
     text-align: right;
     top: 0;
     width: 100%;
-    /* z-index: 100; */
     opacity: .75;
     display: flex;
     flex-direction: row;
-    position:fixed;
     gap: 3em;
 }
 
@@ -43,7 +41,6 @@
 
 .card {
     background: fff;
-    padding: 20rem;
     border: 5px soldi #131516: var(--dark)
 }
 
@@ -64,6 +61,11 @@
 .card-footer {
  margin-top: 1rem;
 
+}
+
+.card-img {
+    max-width: 200px;
+    max-height: 200px;
 }
 
 .btn {

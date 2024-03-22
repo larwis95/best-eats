@@ -58,8 +58,8 @@ function sortRestarants(restaurants) {
 
 //function to render the intial restaurant list, restaurant[i].name = name of restaurant, restaurant[i].rating = rating, restaurant.place_id = place id
 function renderList(restaurants) {
+    console.log(restaurants)
     const initialBody = $('#initialBody');
-        console.log('render list');
     const navDiv = $('#navSearch');
     initialBody.empty();
     navDiv.empty()
@@ -68,9 +68,48 @@ function renderList(restaurants) {
    `);
    const navBtn = navDiv.append(`<button class="button has-text-centered goBtn">Go</button>`)
    addNavHandler(navSearch, navBtn);
-   
-    console.table(restaurants);
+   renderCards(restaurants, initialBody);
+}
 
+function renderCards(restaurants, container) {
+    container.append(`<ul class= "card-list"></ul>`)
+    console.log(restaurants)
+    const cardUl = $(".card-list")
+    console.log(cardUl)
+    for(let i = 0; i < restaurants.length; i++){
+        const photo = restaurants[i].photos[0].getUrl()
+        cardUl.append(`<li data-id = "${restaurants[i].place_id}">
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">${restaurants[i].name}</p>
+                <p>Rating: ${restaurants[i].rating}</p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    <img src= "${photo}" class="card-img">
+                </div>
+            </div>
+             <footer class="card-footer">
+                <button class= "card-button">Reviews</button>
+            </footer>
+        </div>
+        </li>`)
+    }
+    addCardHandler(cardUl)
+}
+
+function addCardHandler(list){
+    list.on("click", (event) => {
+        event.stopPropagation()
+        const tar = $(event.target)
+        console.log(tar)
+        if(tar.get(0).nodeName === "BUTTON"){
+            const id = tar.closest("LI").attr("data-id")
+            console.log(id)
+            console.log($(tar.closest("LI")))
+            getModalInfo(id)
+        }
+    })
 }
 
 function addNavHandler(searchBar, btn){
@@ -221,7 +260,7 @@ $(document).ready(() => {
     {
         savedPlaces = storedPlaces;
     }
-    const goBtn = $('#goBtn');
+    const goBtn = $('.goBtn');
     goBtn.on('click', () => {
         console.log(search.val());
         const input = search.val();
