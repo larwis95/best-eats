@@ -44,13 +44,13 @@ function findRestaurants(coords) {
         types: ['restaurant'],
         radius: '8046.72'
 
-    }
+    };
     const service = new google.maps.places.PlacesService(document.createElement('div'));
     return new Promise((resolve, error) => {
         service.nearbySearch(query, (results) => {
         resolve(results);
         sortRestarants(results);
-        })
+        });
     })
 };
 
@@ -65,7 +65,7 @@ function renderList(restaurants) {
     const navDiv = $('#navSearch');
     initialBody.empty();
     initialBody.attr('style', 'background-image: none; width: auto; height: auto;')
-    navDiv.empty()
+    navDiv.empty();
     navDiv.append(`
     <input class="input has-text-centered" type="text" placeholder="San Jose, CA" id="searchBar">
    `);
@@ -98,7 +98,6 @@ function addCardHandler(list) {
     list.on("click", (event) => {
         event.stopPropagation();
         const tar = $(event.target).closest('.card');
-        console.log(tar.attr('class'))
         if (tar.attr('class') === 'card') 
         {
             const id = tar.closest(".card").attr("data-id");
@@ -116,7 +115,7 @@ function addNavHandler(btn){
             handleSearchClick(input);
             $('#searchBar').val('');
         }
-    })
+    });
 }
 
 function getModalInfo(id) {
@@ -144,8 +143,6 @@ function getModalInfo(id) {
 
 function createModal(restaurant) {
     const btn = checkFavButton(restaurant.id);
-    console.log(restaurant.id);
-    console.log(btn)
     bodyEl.append(`
     <div class="modal">
         <div class="modal-background"></div>
@@ -265,24 +262,21 @@ function generateSidebarList() {
     savedPlaces.forEach(savedPlaces => {
       $sidebarList.append(`<li class= 'menu-list-item' data-place='${savedPlaces.id}'><button class= 'menu-delete-btn'> X </button>${savedPlaces.name}</li>`); // Append the <li> to the <ul>
     });
-    const li = $('.menu-list-item')
-    console.log(li);
+    const li = $('.menu-list-item');
     li.on("click",(event) => {
-      favoritesAddhandle(event)
+      favoritesAddhandle(event);
     })
   }
   
 function favoritesAddhandle(event) {
     event.stopPropagation();
-    const targFav = $(event.target)
+    const targFav = $(event.target);
     if (targFav.get(0).nodeName === "BUTTON")
     {
-        deleteFav(event)
-        console.log(targFav.get(0));
+        deleteFav(event);
     } 
     else if (targFav.get(0).nodeName === "LI") 
     {
-        console.log(targFav.get(0));
         getModalInfo(targFav.attr('data-place'));
     }
       
@@ -328,7 +322,7 @@ $(document).ready(() => {
         }
         else
         {
-            searchDiv.append(`
+            searchDiv?.append(`
             <p id="errorText">Type something first!`);
             search.val('');
             setTimeout(() => {
