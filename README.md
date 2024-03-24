@@ -1,15 +1,17 @@
-# Code Refactor Starter Code
-## Best Eats Website
-
+# Best Eats
 
 ## Description
-Best Eats Website is designed for restaurant go-ers to narrow down their search for the best place to eat in their city. Best Eats users can search the city they are in and be presented with the top 5 best rated restaurants, saving people time and headache while looking for the best place to eat. Best Eats Website also features a favorites tab for users to save restaurants that have sparked their interest.
-## Screenshot
-![The Best Eats webpage has a search bar up top for locating the users desired city, as well as a favorites tab to save restaurants they loved or would like to visit.  ](.png) //need to add final screenshot
+Simple application that uses google places, geocoder, and places search API, to search for the top 5 rated restaurants in a city.
+
+N/A
+
+## Usage
+Open up https://github.com/larwis95/best-eats/deployments/github-pages in your browser. Type a city name in the US with "City Name, State Intials", hit the 'go' button. The page will be updates with 5 cards that show the rating, name and a photo of the 5 highest rated restaurants within 5 miles of that search location. Click on a card to see a dialog box with address, phone numbers, and website for that restaurant. It will also display the 5 most helpful reviews for that restaurant. Use the button in dialog to save it to the favorites list. Use the x or click on the background to leave the dialog box. Click on an item in your favorites list to bring that dialog up again. Use the provided X in the favorites list to delete it from favorites.
+
+## Screen shot
+![The webpage should look like this screenshot](./assets/images/best-eats-ss.png)
 
 
-## Deployment
-deployment link of Best Eats Website
+## License
 
-
-// need link
+N/A
