@@ -75,27 +75,21 @@ function renderList(restaurants) {
 }
 
 function renderCards(restaurants, container) {
-    container.append(`<ul class= "card-list"></ul>`)
+    container.append(`<div class="card-list"</div>`)
     const cardUl = $(".card-list");
     for(let i = 0; i < restaurants.length; i++)
     {
-        const photo = restaurants[i].photos[0].getUrl()
-        cardUl.append(`<li data-id = "${restaurants[i].place_id}">
-        <div class="card">
+        const photo = restaurants[i].photos[0].getUrl({ 'maxWidth': 1000, 'maxHeight': 1000 });
+        cardUl.append(`
+        <div class="card" data-id="${restaurants[i].place_id}">
             <header class="card-header">
                 <p class="card-header-title">${restaurants[i].name}</p>
-                <p>Rating: ${restaurants[i].rating}</p>
+                <p>${restaurants[i].rating} ☆</p>
             </header>
-            <div class="card-content">
-                <div class="content">
-                    <img src= "${photo}" class="card-img">
-                </div>
+            <div class="card-img image">
+                <img src="${photo}">
             </div>
-             <footer class="card-footer">
-                <button class= "card-button">Reviews</button>
-            </footer>
-        </div>
-        </li>`);
+        </div>`);
     }
     addCardHandler(cardUl);
 }
@@ -103,12 +97,14 @@ function renderCards(restaurants, container) {
 function addCardHandler(list) {
     list.on("click", (event) => {
         event.stopPropagation();
-        const tar = $(event.target);
-        if (tar.get(0).nodeName === "BUTTON")
+        const tar = $(event.target).closest('.card');
+        console.log(tar.attr('class'))
+        if (tar.attr('class') === 'card') 
         {
-            const id = tar.closest("LI").attr("data-id");
+            const id = tar.closest(".card").attr("data-id");
             getModalInfo(id);
         }
+        return;
     })
 }
 
@@ -147,6 +143,9 @@ function getModalInfo(id) {
 };
 
 function createModal(restaurant) {
+    const btn = checkFavButton(restaurant.id);
+    console.log(restaurant.id);
+    console.log(btn)
     bodyEl.append(`
     <div class="modal">
         <div class="modal-background"></div>
@@ -169,7 +168,7 @@ function createModal(restaurant) {
                 </ul>
             </section>
             <footer class="modal-card-foot is-flex is-justify-content-center">
-                <button class="button is-success" id="favButton">Save to Favorites</button>
+                ${btn}
             </footer>
         </div>
     </div>`);
@@ -214,35 +213,49 @@ function showModal() {
 function addModalHandlers(restaurant) {
     const closeBtn = $('.delete');
     const favBtn = $('#favButton');
+    const modalBg = $('.modal-background');
     closeBtn.on('click', () => {
         closeModal();
     });
+    modalBg.on('click', (event) => {
+        event.stopPropagation();
+        closeModal();
+    })
     favBtn.on('click', () => {
         const favInfo = {id: restaurant.id, name: restaurant.name};
-        let found = false;
-        for (let i = 0; i < savedPlaces.length; i++) 
-        {
-            if (savedPlaces[i].id === restaurant.id)
-            {
-                found = true;
-            }
-        }
+        let found = checkFav(favInfo.id)
         if (found === false) 
         {
             savedPlaces.push(favInfo);
+            favBtn.remove();
+            $('.modal-card-foot').append(`<p id="successText">Saved to favorites!</p>`);
             setLocalStorage();
             generateSidebarList();
         }
-        else 
-        {
-            $('.modal-card-foot').append('<p id="errorText">Already saved to favorites!</p>');
-              setTimeout(() => {
-                const text = $('#errorText');
-                text.remove();
-            }, 1000);
-        }
     });
 };
+
+function checkFav(id) {
+    for (let i = 0; i < savedPlaces.length; i++) 
+    {
+        if (savedPlaces[i].id === id)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+function checkFavButton(id) {
+    for (let i = 0; i < savedPlaces.length; i++) 
+    {
+        if (savedPlaces[i].id === id)
+        {
+            return '<p id="successText">Saved to favorites!</p>';
+        }
+    }
+    return '<button class="button is-success" id="favButton">Save to Favorites</button>';
+}
 
 // Function to generate list items in the sidebar
 function generateSidebarList() {
@@ -279,7 +292,7 @@ function deleteFav(event) {
     const delBut = $(event.target);
     const delLI = delBut.closest('LI');
     const idDel = delLI.attr('data-place');
-    for(i = 0; i < storedPlaces.length; i++) 
+    for(i = 0; i < savedPlaces.length; i++) 
     {
         if(savedPlaces[i].id === idDel) 
         {
