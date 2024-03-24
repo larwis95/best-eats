@@ -6,8 +6,8 @@
   }
 
 .container-header {
-    background-image: linear-gradient(45deg, #d16014 50%, #f56e06 50% );
-    background-color: #000;
+    background-image: linear-gradient(45deg, #f4731d 50%, #f06203 50% );
+    background-color: #ff9837;
     background-size: 20px 20px;
     border: none;
     box-shadow: 2px 2px 2px #000000, 0em 0.1em .4em #000000;
@@ -16,7 +16,7 @@
     text-align: right;
     top: 0;
     width: 100%;
-    opacity: .75;
+    opacity: 1;
     display: flex;
     flex-direction: row;
     gap: 3em;
@@ -40,19 +40,39 @@
 }   
 
 .card {
-    background: fff;
-    border: 5px solid #131516 var(--dark)
-}
-
-.card.card-shadow {
-    border: none;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, .5, .5);
+    background-color: #000000;
+opacity: 1;
+background-image: linear-gradient(45deg, #f4731d 50%, #f06203 50%);
+background-size: 15px 15px;
+    border: 10px solid #131516 var(--dark)
+    box-shadow: 0 2px 4px black(0, 0, 0, 0.973);
+    color: black;
+    margin: 5px;
 }
 
 .card-img {
     max-width: 200px;
     max-height: 200px;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.973);
+    border: 2px solid ;
+    border-radius: 20px;
 }
+
+.card-footer{
+    border-top:0px;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.973);
+}
+.card-button{
+    background-image: linear-gradient(45deg, #111111 50%, #000000 50%);
+    color:#ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    margin: 2px;
+    border-radius: 12px;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.973);
+}
+
+
 
 html {
     height: 100%;
