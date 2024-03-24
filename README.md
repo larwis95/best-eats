@@ -1,4 +1,4 @@
-# City Weather Search
+# Best Eats
 
 ## Description
 Simple application that uses google places, geocoder, and places search API, to search for the top 5 rated restaurants in a city.
