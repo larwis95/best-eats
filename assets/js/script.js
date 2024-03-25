@@ -79,7 +79,16 @@ function renderCards(restaurants, container) {
     const cardUl = $(".card-list");
     for(let i = 0; i < restaurants.length; i++)
     {
-        const photo = restaurants[i].photos[0].getUrl({ 'maxWidth': 1000, 'maxHeight': 1000 });
+        let photo;
+        if (('photos' in restaurants[i]) )
+        {
+            photo = restaurants[i].photos[0].getUrl({ 'maxWidth': 1000, 'maxHeight': 1000 });
+        }
+        else
+        {
+            photo = 'https://pro-comm-online.com/wp-content/uploads/2019/11/not-available.jpg';
+        }
+            
         cardUl.append(`
         <div class="card" data-id="${restaurants[i].place_id}">
             <header class="card-header">
